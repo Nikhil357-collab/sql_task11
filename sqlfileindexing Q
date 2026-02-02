@@ -1,0 +1,19 @@
+use already existed table  -------;
+
+- Slow query (without index)
+SELECT * FROM orders WHERE customer_id = 500;
+
+-- Execution plan before index
+EXPLAIN SELECT * FROM orders WHERE customer_id = 500;
+
+-- Create index
+CREATE INDEX idx_customer_id ON orders(customer_id);
+
+-- Query after index
+SELECT * FROM orders WHERE customer_id = 500;
+
+-- Execution plan after index
+EXPLAIN SELECT * FROM orders WHERE customer_id = 500;
+
+-- Query where index is not helpful
+SELECT * FROM orders;
